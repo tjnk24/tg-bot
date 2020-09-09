@@ -1,0 +1,48 @@
+{
+  "name": "vk-to-tg-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": "12.x",
+    "npm": "6.14.8",
+    "yarn": "1.22.4"
+  },
+  "scripts": {
+    "start": "SET NODE_ENV=development&nodemon --exec babel-node src/index.js",
+    "deploy": "git push heroku master",
+    "lint": "eslint src/**"
+  },
+  "repository": "https://github.com/tjnk24/vk-to-tg-bot.git",
+  "author": "tjnk24 <tjnk24@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsdom": "^16.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base"
+    ],
+    "rules": {
+      "no-unused-expressions": "off",
+      "no-unused-vars": "warn"
+    }
+  }
+}
