@@ -1,5 +1,5 @@
 {
-  "name": "vk-to-tg-bot",
+  "name": "tg-bot",
   "version": "1.0.0",
   "main": "index.js",
   "engines": {
@@ -8,11 +8,11 @@
     "yarn": "1.22.4"
   },
   "scripts": {
-    "start": "SET NODE_ENV=development&nodemon --exec babel-node src/index.js",
+    "start": "SET NODE_ENV=development&nodemon --exec babel-node src/bot.js",
     "deploy": "git push heroku master",
     "lint": "eslint src/**"
   },
-  "repository": "https://github.com/tjnk24/vk-to-tg-bot.git",
+  "repository": "https://github.com/tjnk24/tg-bot.git",
   "author": "tjnk24 <tjnk24@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -25,7 +25,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsdom": "^16.4.0",
-    "telegraf": "^3.38.0"
+    "telegraf": "^3.38.0",
+    "telegraf-i18n": "^6.6.0"
   },
   "devDependencies": {
     "eslint": "^7.7.0",

@@ -1,0 +1,17 @@
+{
+  "scenes": {
+    "main": {
+      "send_link": "Send me a link in format: https://vk.com/названиегруппы, and I'll subscribe you!",
+      "no_subscriptions": "You don't have any subscriptions yet. Send me appropriate links and add some!",
+      "helpcommands": "<b>List of all commands:</b>\n/list - show all your subscriptions\n/helpcommands - show list of all commands",
+      "help": "The help section is under construction"
+    }
+  },
+  "keyboards": {
+    "main_keyboard": {
+      "my_subscriptions": "📰 My subscriptions",
+      "helpcommands": "All commands",
+      "help": "Help"
+    }
+  }
+}
