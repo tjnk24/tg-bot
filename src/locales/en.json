@@ -5,12 +5,19 @@
       "no_subscriptions": "You don't have any subscriptions yet. Send me appropriate links and add some!",
       "helpcommands": "<b>List of all commands:</b>\n/list - show all your subscriptions\n/helpcommands - show list of all commands",
       "help": "The help section is under construction"
+    },
+    "settings": {
+      "what_to_change": "What do you want to change?",
+      "language_button": "🗣 Language",
+      "pick_language": "Choose language",
+      "language_changed": "Language successfully changed!"
     }
   },
   "keyboards": {
     "main_keyboard": {
       "my_subscriptions": "📰 My subscriptions",
       "helpcommands": "All commands",
+      "settings": "Bot settings",
       "help": "Help"
     }
   }
