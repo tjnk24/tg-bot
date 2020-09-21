@@ -2,15 +2,13 @@ import { Extra } from 'telegraf';
 import get from 'lodash.get';
 import saveToSession from '../../utils/session';
 
-export function getLanguageKeyboard() {
-  return Extra.markup((m) => m.inlineKeyboard(
-    [
-      m.callbackButton('🇺🇸 English', JSON.stringify({ action: 'languageChange', payload: 'en' }), false),
-      m.callbackButton('🇷🇺 Русский', JSON.stringify({ action: 'languageChange', payload: 'ru' }), false),
-    ],
-    {},
-  ));
-}
+export const getLanguageKeyboard = () => Extra.markup((m) => m.inlineKeyboard(
+  [
+    m.callbackButton('🇺🇸 English', JSON.stringify({ action: 'languageChange', payload: 'en' }), false),
+    m.callbackButton('🇷🇺 Русский', JSON.stringify({ action: 'languageChange', payload: 'ru' }), false),
+  ],
+  {},
+));
 
 export const getSettingsKeyboard = (ctx) => Extra.markup((m) => m.inlineKeyboard(
   [
@@ -30,11 +28,11 @@ export const getSettingsKeyboard = (ctx) => Extra.markup((m) => m.inlineKeyboard
  * @param translationKey - translation key
  * @param extra - extra for the message, e.g. keyboard
  */
-export async function sendMessageToBeDeletedLater(
+export const sendMessageToBeDeletedLater = async (
   ctx,
   translationKey,
   extra,
-) {
+) => {
   ctx.webhookReply = false;
   const message = await ctx.reply(ctx.i18n.t(translationKey), extra);
   const messagesToDelete = get(ctx.session, 'settingsScene.messagesToDelete', []);
@@ -48,4 +46,4 @@ export async function sendMessageToBeDeletedLater(
       },
     ],
   });
-}
+};
