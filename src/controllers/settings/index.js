@@ -1,5 +1,6 @@
 import Stage from 'telegraf/stage';
 import Scene from 'telegraf/scenes/base';
+import logger from '../../utils/logger';
 import getMainKeyboard from '../../utils/keyboards';
 import { deleteFromSession } from '../../utils/session';
 import { getSettingsKeyboard, sendMessageToBeDeletedLater } from './helpers';
@@ -12,7 +13,10 @@ const { leave } = Stage;
 const settings = new Scene('settings');
 
 settings.enter(async (ctx) => {
+  logger.debug(ctx, 'Enters settings scene');
+
   deleteFromSession(ctx, 'settingsScene');
+
   await sendMessageToBeDeletedLater(
     ctx,
     'scenes.settings.what_to_change',

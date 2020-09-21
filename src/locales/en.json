@@ -8,17 +8,20 @@
     },
     "settings": {
       "what_to_change": "What do you want to change?",
-      "language_button": "🗣 Language",
+      "language_button": "🌐 Language",
       "pick_language": "Choose language",
       "language_changed": "Language successfully changed!"
     }
   },
+  "shared": {
+    "something_went_wrong": "Sorry, something went wrong, please try again"
+  },
   "keyboards": {
     "main_keyboard": {
       "my_subscriptions": "📰 My subscriptions",
-      "helpcommands": "All commands",
-      "settings": "Bot settings",
-      "help": "Help"
+      "helpcommands": "📌 All commands",
+      "settings": "⚙️ Bot settings",
+      "help": "📖 Help"
     }
   }
 }
