@@ -1,7 +1,6 @@
 import Stage from 'telegraf/stage';
 import Scene from 'telegraf/scenes/base';
 import logger from '../../utils/logger';
-import getMainKeyboard from '../../utils/keyboards';
 import { deleteFromSession } from '../../utils/session';
 import { getSettingsKeyboard, sendMessageToBeDeletedLater } from './helpers';
 import {
@@ -25,8 +24,6 @@ settings.enter(async (ctx) => {
 });
 
 settings.leave(async (ctx) => {
-  const { mainKeyboard } = getMainKeyboard(ctx);
-  await ctx.reply(ctx.i18n.t('scenes.settings.language_changed'), mainKeyboard);
   deleteFromSession(ctx, 'settingsScene');
 });
 

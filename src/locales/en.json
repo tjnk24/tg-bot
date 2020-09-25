@@ -14,7 +14,8 @@
     }
   },
   "shared": {
-    "something_went_wrong": "Sorry, something went wrong, please try again"
+    "something_went_wrong": "Sorry, something went wrong, please try again",
+    "wrong_command": "Sorry, the command is not identified"
   },
   "keyboards": {
     "main_keyboard": {

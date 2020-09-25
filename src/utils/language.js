@@ -1,4 +1,5 @@
 import logger from './logger';
+import User from '../models/User';
 import saveToSession from './session';
 
 /**
@@ -8,6 +9,12 @@ import saveToSession from './session';
  */
 const updateLanguage = async (ctx, newLang) => {
   logger.debug(ctx, 'Updating language for user to %s', newLang);
+
+  await User.findOneAndUpdate(
+    { _id: ctx.from.id },
+    { language: newLang },
+    { new: true },
+  );
 
   saveToSession(ctx, 'language', newLang);
   ctx.i18n.locale(newLang);
