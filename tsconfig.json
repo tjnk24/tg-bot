@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "build",
+        "baseUrl": ".",
+        "resolveJsonModule": true,
+        "typeRoots": ["./node_modules/@types", "./src/types"]
+    },
+    "include": ["./src/**/*", "src/locales/*.json", "src/types"]
+}

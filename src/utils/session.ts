@@ -1,4 +1,7 @@
+import { CustomContextMessage } from 'telegraf';
 import logger from './logger';
+
+type SessionDataField = 'settingsScene' | 'language';
 
 /**
  * Saving data to the session
@@ -6,7 +9,7 @@ import logger from './logger';
  * @param field - field to store in
  * @param data - data to store
  */
-const saveToSession = (ctx, field, data) => {
+const saveToSession = (ctx: CustomContextMessage, field: SessionDataField, data: any) => {
   logger.debug(ctx, 'Saving %s to session', field);
   ctx.session[field] = data;
 };
@@ -16,7 +19,7 @@ const saveToSession = (ctx, field, data) => {
  * @param ctx - telegram context
  * @param field - field to delete
  */
-export const deleteFromSession = (ctx, field) => {
+export const deleteFromSession = (ctx: CustomContextMessage, field: SessionDataField) => {
   logger.debug(ctx, 'Saving %s to session', field);
   delete ctx.session[field];
 };

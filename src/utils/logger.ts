@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import { CustomContextMessage } from 'telegraf';
 import util from 'util';
 import winston, { format } from 'winston';
 
@@ -8,7 +9,7 @@ import winston, { format } from 'winston';
  * @param msg  - message
  * @param data - object to log
  */
-const prepareMessage = (ctx, msg, ...data) => {
+const prepareMessage = (ctx: CustomContextMessage, msg: string, ...data: any[]) => {
   const formattedMessage = data.length ? util.format(msg, ...data) : msg;
 
   if (ctx && ctx.from) {
@@ -38,8 +39,16 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const loggerWithCtx = {
-  debug: (ctx, msg, ...data) => logger.debug(prepareMessage(ctx, msg, ...data)),
-  error: (ctx, msg, ...data) => logger.error(prepareMessage(ctx, msg, ...data)),
+  debug: (
+    ctx: CustomContextMessage,
+    msg: string,
+    ...data: any[]
+  ) => logger.debug(prepareMessage(ctx, msg, ...data)),
+  error: (
+    ctx: CustomContextMessage,
+    msg: string,
+    ...data: any[]
+  ) => logger.error(prepareMessage(ctx, msg, ...data)),
 };
 
 export default loggerWithCtx;

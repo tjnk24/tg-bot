@@ -1,4 +1,4 @@
-// Add some general info, like isPremium, language, etc...
+import { CustomContextMessage } from 'telegraf';
 import User from '../models/User';
 
 /**
@@ -6,7 +6,7 @@ import User from '../models/User';
  * @param ctx - telegram context
  * @param next - next function
  */
-const getUserInfo = async (ctx, next) => {
+const getUserInfo = async (ctx: CustomContextMessage, next: Function) => {
   if (!ctx.session.language) {
     const user = await User.findById(ctx.from.id);
 

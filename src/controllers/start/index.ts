@@ -1,11 +1,11 @@
-import Scene from 'telegraf/scenes/base';
+import { CustomContextMessage, BaseScene } from 'telegraf';
 import getMainKeyboard from '../../utils/keyboards';
 import logger from '../../utils/logger'; // TODO: make normal aliases
 import User from '../../models/User';
 
-const start = new Scene('start');
+const start = new BaseScene('start');
 
-start.enter(async (ctx) => {
+start.enter(async (ctx: CustomContextMessage) => {
   const uid = String(ctx.from.id);
   const user = await User.findById(uid);
   const { mainKeyboard } = getMainKeyboard(ctx);

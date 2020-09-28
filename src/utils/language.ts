@@ -1,3 +1,4 @@
+import { CustomContextMessage } from 'telegraf';
 import logger from './logger';
 import User from '../models/User';
 import saveToSession from './session';
@@ -7,7 +8,7 @@ import saveToSession from './session';
  * @param ctx - telegram context
  * @param newLang - new language
  */
-const updateLanguage = async (ctx, newLang) => {
+const updateLanguage = async (ctx: CustomContextMessage, newLang: 'en' | 'ru') => {
   logger.debug(ctx, 'Updating language for user to %s', newLang);
 
   await User.findOneAndUpdate(

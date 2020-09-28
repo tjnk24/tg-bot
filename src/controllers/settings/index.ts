@@ -1,5 +1,4 @@
-import Stage from 'telegraf/stage';
-import Scene from 'telegraf/scenes/base';
+import { CustomContextMessage, Stage, BaseScene } from 'telegraf';
 import logger from '../../utils/logger';
 import { deleteFromSession } from '../../utils/session';
 import { getSettingsKeyboard, sendMessageToBeDeletedLater } from './helpers';
@@ -9,9 +8,9 @@ import {
 } from './actions';
 
 const { leave } = Stage;
-const settings = new Scene('settings');
+const settings = new BaseScene('settings');
 
-settings.enter(async (ctx) => {
+settings.enter(async (ctx: CustomContextMessage) => {
   logger.debug(ctx, 'Enters settings scene');
 
   deleteFromSession(ctx, 'settingsScene');
@@ -23,7 +22,7 @@ settings.enter(async (ctx) => {
   );
 });
 
-settings.leave(async (ctx) => {
+settings.leave(async (ctx: CustomContextMessage) => {
   deleteFromSession(ctx, 'settingsScene');
 });
 

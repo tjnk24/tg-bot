@@ -1,4 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose, { Document } from 'mongoose';
+
+export interface IUser extends Document {
+  _id: number;
+  created: number;
+  username: string;
+  name: string;
+  observableGroups: string[];
+  lastActivity: number;
+  language: 'en' | 'ru';
+  totalMovies: number;
+}
 
 export const UserSchema = new mongoose.Schema(
   {
@@ -21,5 +32,5 @@ export const UserSchema = new mongoose.Schema(
 //   this.populate('observableGroups');
 // });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model<IUser>('User', UserSchema);
 export default User;

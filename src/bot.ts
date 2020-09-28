@@ -1,7 +1,6 @@
 import path from 'path';
 import mongoose from 'mongoose';
-import Telegraf, { Stage } from 'telegraf';
-import session from 'telegraf/session';
+import Telegraf, { Stage, CustomContextMessage, session } from 'telegraf';
 import TelegrafI18n, { match } from 'telegraf-i18n';
 import getUserInfo from './middlewares/user-info';
 import startScene from './controllers/start';
@@ -10,7 +9,6 @@ import logger from './utils/logger';
 import startDevMode from './utils/dev-modes';
 import asyncWrapper from './utils/error-handler';
 import deleteKeyboardMessage from './utils/helpers';
-import Telegram from './telegram';
 
 require('dotenv').config();
 
@@ -54,14 +52,14 @@ mongoose.connection.on('open', () => {
   bot.use(stage.middleware());
   bot.use(getUserInfo);
 
-  bot.start(asyncWrapper(async (ctx) => {
+  bot.start(asyncWrapper(async (ctx: CustomContextMessage) => {
     await deleteKeyboardMessage(ctx);
     return ctx.scene.enter('start');
   }));
 
   bot.hears(
     [match('keyboards.main_keyboard.settings'), '/settings'],
-    asyncWrapper(async (ctx) => {
+    asyncWrapper(async (ctx: CustomContextMessage) => {
       await deleteKeyboardMessage(ctx);
       return ctx.scene.enter('settings');
     }),
@@ -69,7 +67,7 @@ mongoose.connection.on('open', () => {
 
   bot.hears(
     [match('keyboards.main_keyboard.my_subscriptions'), '/list'],
-    asyncWrapper(async (ctx) => {
+    asyncWrapper(async (ctx: CustomContextMessage) => {
       await deleteKeyboardMessage(ctx);
       await ctx.reply(ctx.i18n.t('scenes.main.no_subscriptions'));
     }),
@@ -77,7 +75,7 @@ mongoose.connection.on('open', () => {
 
   bot.hears(
     [match('keyboards.main_keyboard.help'), '/help'],
-    asyncWrapper(async (ctx) => {
+    asyncWrapper(async (ctx: CustomContextMessage) => {
       await deleteKeyboardMessage(ctx);
       await ctx.reply(ctx.i18n.t('scenes.main.help'));
     }),
@@ -85,17 +83,17 @@ mongoose.connection.on('open', () => {
 
   bot.hears(
     [match('keyboards.main_keyboard.helpcommands'), '/helpcommands'],
-    asyncWrapper(async (ctx) => {
+    asyncWrapper(async (ctx: CustomContextMessage) => {
       await deleteKeyboardMessage(ctx);
       await ctx.replyWithHTML(ctx.i18n.t('scenes.main.helpcommands'));
     }),
   );
 
-  bot.hears(/(.*?)/, asyncWrapper(async (ctx) => {
+  bot.hears(/(.*?)/, asyncWrapper(async (ctx: CustomContextMessage) => {
     await ctx.reply(ctx.i18n.t('shared.wrong_command'));
   }));
 
-  bot.catch((error) => {
+  bot.catch((error: any) => {
     logger.error(undefined, 'Global error has happened, %O', error);
   });
 
