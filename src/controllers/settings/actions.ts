@@ -1,8 +1,8 @@
 import { CustomContextMessage } from 'telegraf';
+import updateLanguage from '@utils/language';
+import { deleteFromSession } from '@utils/session';
+import getMainKeyboard from '@utils/keyboards';
 import { getLanguageKeyboard } from './helpers';
-import updateLanguage from '../../utils/language';
-import { deleteFromSession } from '../../utils/session';
-import getMainKeyboard from '../../utils/keyboards';
 
 export const languageSettingsAction = async (ctx: CustomContextMessage) => ctx.editMessageText(ctx.i18n.t('scenes.settings.pick_language'), getLanguageKeyboard());
 

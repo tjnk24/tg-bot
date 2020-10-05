@@ -11,6 +11,13 @@
       "language_button": "🌐 Language",
       "pick_language": "Choose language",
       "language_changed": "Language successfully changed!"
+    },
+    "subscribe": {
+      "wrong_address": "Sorry, the group is not available at the address you specified",
+      "successfully_subscribed": "Successfully subscribed you to ${title}! A number of remaining possible subscriptions: ${remainingSubs}",
+      "maximum_subscriptions": "You have reached the maximum number of subscriptions. You can unsubscribe from one or several groups to make a new subscription.",
+      "group_is_private": "Sorry, this group is private, nothing to show.",
+      "already_subscribed": "You're already subscribed to this group."
     }
   },
   "shared": {

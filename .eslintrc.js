@@ -19,5 +19,7 @@ module.exports = {
     'import/extensions': 'off',
     'no-unused-expressions': 'off',
     'no-unused-vars': 'warn',
+    'no-underscore-dangle': 'off',
+    camelcase: 'off',
   },
 };

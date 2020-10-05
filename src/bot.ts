@@ -1,14 +1,22 @@
+import 'module-alias/register';
 import path from 'path';
 import mongoose from 'mongoose';
-import Telegraf, { Stage, CustomContextMessage, session } from 'telegraf';
+import Telegraf, {
+  Stage,
+  CustomContextMessage,
+  session,
+  Middleware,
+} from 'telegraf';
 import TelegrafI18n, { match } from 'telegraf-i18n';
-import getUserInfo from './middlewares/user-info';
-import startScene from './controllers/start';
-import settingsScene from './controllers/settings';
-import logger from './utils/logger';
-import startDevMode from './utils/dev-modes';
-import asyncWrapper from './utils/error-handler';
-import deleteKeyboardMessage from './utils/helpers';
+import { TelegrafContext } from 'telegraf/typings/context';
+import getUserInfo from '@middlewares/user-info';
+import startScene from '@controllers/start';
+import settingsScene from '@controllers/settings';
+import subscribeScene from '@controllers/subscribe';
+import logger from '@utils/logger';
+import startDevMode from '@utils/dev-modes';
+import asyncWrapper from '@utils/error-handler';
+import deleteKeyboardMessage from '@utils/helpers';
 
 require('dotenv').config();
 
@@ -35,9 +43,13 @@ mongoose.connection.on('error', (err) => {
 });
 
 mongoose.connection.on('open', () => {
-  const bot = new Telegraf(process.env.BOT_TOKEN);
+  const bot = new Telegraf(process.env.BOT_TOKEN as string);
 
-  const stage = new Stage([startScene, settingsScene]);
+  const stage = new Stage([
+    startScene,
+    settingsScene,
+    subscribeScene,
+  ]);
 
   const i18n = new TelegrafI18n({
     defaultLanguage: 'ru',
@@ -49,7 +61,7 @@ mongoose.connection.on('open', () => {
 
   bot.use(session());
   bot.use(i18n.middleware());
-  bot.use(stage.middleware());
+  bot.use(stage.middleware() as Middleware<TelegrafContext>);
   bot.use(getUserInfo);
 
   bot.start(asyncWrapper(async (ctx: CustomContextMessage) => {
@@ -89,9 +101,7 @@ mongoose.connection.on('open', () => {
     }),
   );
 
-  bot.hears(/(.*?)/, asyncWrapper(async (ctx: CustomContextMessage) => {
-    await ctx.reply(ctx.i18n.t('shared.wrong_command'));
-  }));
+  bot.hears(/(.*?)/, asyncWrapper(async (ctx: CustomContextMessage) => ctx.scene.enter('subscribe')));
 
   bot.catch((error: any) => {
     logger.error(undefined, 'Global error has happened, %O', error);

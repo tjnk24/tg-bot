@@ -1,6 +1,6 @@
 import { CustomContextMessage } from 'telegraf';
+import User from '@models/User';
 import logger from './logger';
-import User from '../models/User';
 import saveToSession from './session';
 
 /**

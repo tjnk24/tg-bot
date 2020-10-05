@@ -1,13 +1,12 @@
-import { CustomContextMessage, Stage, BaseScene } from 'telegraf';
-import logger from '../../utils/logger';
-import { deleteFromSession } from '../../utils/session';
+import { CustomContextMessage, BaseScene } from 'telegraf';
+import logger from '@utils/logger';
+import { deleteFromSession } from '@utils/session';
 import { getSettingsKeyboard, sendMessageToBeDeletedLater } from './helpers';
 import {
   languageSettingsAction,
   languageChangeAction,
 } from './actions';
 
-const { leave } = Stage;
 const settings = new BaseScene('settings');
 
 settings.enter(async (ctx: CustomContextMessage) => {
@@ -25,8 +24,6 @@ settings.enter(async (ctx: CustomContextMessage) => {
 settings.leave(async (ctx: CustomContextMessage) => {
   deleteFromSession(ctx, 'settingsScene');
 });
-
-settings.command('saveme', leave());
 
 settings.action(/languageSettings/, languageSettingsAction);
 settings.action(/languageChange/, languageChangeAction);

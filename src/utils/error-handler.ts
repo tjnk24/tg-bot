@@ -1,11 +1,17 @@
 import { CustomContextMessage } from 'telegraf';
+import { TelegrafContext } from 'telegraf/typings/context';
 import logger from './logger';
 
 /**
  * Wrapper to catch async errors within a stage. Helps to avoid try catch blocks in there
  * @param fn - function to enter a stage
  */
-const asyncWrapper = (fn: Function) => async (ctx: CustomContextMessage, next: Function) => {
+const asyncWrapper = (fn: Function) => async (
+  ctxValue: CustomContextMessage | TelegrafContext,
+  next: Function,
+) => {
+  const ctx = ctxValue as CustomContextMessage;
+
   try {
     return await fn(ctx);
   } catch (error) {

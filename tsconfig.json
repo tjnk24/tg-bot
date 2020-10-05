@@ -7,9 +7,17 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "build",
-        "baseUrl": ".",
         "resolveJsonModule": true,
-        "typeRoots": ["./node_modules/@types", "./src/types"]
+        "typeRoots": ["./node_modules/@types", "./src/types"],
+        "baseUrl": ".",
+        "paths": {
+            "@controllers/*": ["src/controllers/*"],
+            "@locales/*": ["src/locales/*"],
+            "@middlewares/*": ["src/middlewares/*"],
+            "@models/*": ["src/models/*"],
+            "@types/*": ["src/types/*"],
+            "@utils/*": ["src/utils/*"],
+        }
     },
     "include": ["./src/**/*", "src/locales/*.json", "src/types"]
 }

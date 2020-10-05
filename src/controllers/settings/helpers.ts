@@ -1,12 +1,11 @@
 import {
-  ContextMessageUpdate,
   CustomContextMessage,
   Extra,
   Markup,
 } from 'telegraf';
 import { ExtraReplyMessage } from 'telegraf/typings/telegram-types';
 import get from 'lodash.get';
-import saveToSession from '../../utils/session';
+import saveToSession from '@utils/session';
 
 export const getLanguageKeyboard = () => Extra.markup(
   (m: Markup) => m.inlineKeyboard(
@@ -18,7 +17,7 @@ export const getLanguageKeyboard = () => Extra.markup(
   ),
 );
 
-export const getSettingsKeyboard = (ctx: ContextMessageUpdate) => Extra.markup(
+export const getSettingsKeyboard = (ctx: CustomContextMessage) => Extra.markup(
   (m: Markup) => m.inlineKeyboard(
     [
       m.callbackButton(

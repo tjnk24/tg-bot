@@ -9,7 +9,7 @@ import winston, { format } from 'winston';
  * @param msg  - message
  * @param data - object to log
  */
-const prepareMessage = (ctx: CustomContextMessage, msg: string, ...data: any[]) => {
+const prepareMessage = (ctx: CustomContextMessage | undefined, msg: string, ...data: any[]) => {
   const formattedMessage = data.length ? util.format(msg, ...data) : msg;
 
   if (ctx && ctx.from) {
@@ -40,12 +40,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 const loggerWithCtx = {
   debug: (
-    ctx: CustomContextMessage,
+    ctx: CustomContextMessage | undefined,
     msg: string,
     ...data: any[]
   ) => logger.debug(prepareMessage(ctx, msg, ...data)),
   error: (
-    ctx: CustomContextMessage,
+    ctx: CustomContextMessage | undefined,
     msg: string,
     ...data: any[]
   ) => logger.error(prepareMessage(ctx, msg, ...data)),

@@ -1,13 +1,16 @@
 import { CustomContextMessage } from 'telegraf';
-import User from '../models/User';
+import { TelegrafContext } from 'telegraf/typings/context';
+import User from '@models/User';
 
 /**
  * Modifies context and add some information about the user
  * @param ctx - telegram context
  * @param next - next function
  */
-const getUserInfo = async (ctx: CustomContextMessage, next: Function) => {
-  if (!ctx.session.language) {
+const getUserInfo = async (ctxValue: CustomContextMessage | TelegrafContext, next: Function) => {
+  const ctx = ctxValue as CustomContextMessage;
+
+  if (ctx.from && !ctx.session.language) {
     const user = await User.findById(ctx.from.id);
 
     if (user) {

@@ -2,7 +2,7 @@ import { I18n } from 'telegraf-i18n';
 import { TelegrafContext } from 'telegraf/typings/context';
 
 declare module 'telegraf' {
-  interface ContextMessageUpdate {
+  export interface CustomContextMessage extends TelegrafContext {
     i18n: I18n;
     scene: any;
     session: {
@@ -14,5 +14,5 @@ declare module 'telegraf' {
     webhookReply: boolean;
   }
 
-  type CustomContextMessage = ContextMessageUpdate & TelegrafContext;
+  // type CustomContextMessage = ContextMessageUpdate & TelegrafContext;
 }

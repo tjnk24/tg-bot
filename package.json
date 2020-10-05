@@ -15,21 +15,28 @@
   "repository": "https://github.com/tjnk24/tg-bot.git",
   "author": "tjnk24 <tjnk24@gmail.com>",
   "license": "MIT",
+  "_moduleAliases": {
+    "@controllers": "src/controllers",
+    "@locales": "src/locales",
+    "@middlewares": "src/middlewares",
+    "@models": "src/models",
+    "@types": "src/types",
+    "@utils": "src/utils"
+  },
   "dependencies": {
-    "@babel/cli": "^7.11.5",
-    "@babel/core": "^7.11.5",
-    "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.11.5",
+    "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
-    "jsdom": "^16.4.0",
     "lodash.get": "^4.4.2",
+    "module-alias": "^2.2.2",
     "mongoose": "^5.10.6",
+    "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "telegraf": "^3.38.0",
     "telegraf-i18n": "^6.6.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.22",
     "@types/dotenv": "^8.2.0",
     "@types/lodash": "^4.14.161",
     "@types/lodash.get": "^4.4.6",
@@ -44,10 +51,5 @@
     "nodemon": "^2.0.4",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
   }
 }
