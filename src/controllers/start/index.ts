@@ -6,15 +6,16 @@ import User from '@models/User';
 const start = new BaseScene('start');
 
 start.enter(async (ctx: CustomContextMessage) => {
-  const uid = String(ctx.from.id);
-  const user = await User.findById(uid);
+  logger.debug(ctx, 'Entering start scene');
+
+  const user = await User.findById(ctx.from.id);
   const { mainKeyboard } = getMainKeyboard(ctx);
 
   if (!user) {
     const now = new Date().getTime();
 
     const newUser = new User({
-      _id: uid,
+      _id: ctx.from.id,
       created: now,
       username: ctx.from.username,
       name: `${ctx.from.first_name} ${ctx.from.last_name}`,

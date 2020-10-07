@@ -2,7 +2,7 @@ import mongoose, { Document } from 'mongoose';
 import { IGroup } from './Group';
 
 export interface IUser extends Document {
-  _id: string | number;
+  _id: number;
   created: number;
   username: string;
   name: string;
@@ -15,7 +15,7 @@ export interface IUser extends Document {
 
 export const UserSchema = new mongoose.Schema(
   {
-    _id: String || Number,
+    _id: Number,
     created: Number,
     username: String,
     name: String,

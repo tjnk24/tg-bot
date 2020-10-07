@@ -3,7 +3,7 @@
     "main": {
       "send_link": "Send me a link in format: https://vk.com/названиегруппы, and I'll subscribe you!",
       "no_subscriptions": "You don't have any subscriptions yet. Send me appropriate links and add some!",
-      "helpcommands": "<b>List of all commands:</b>\n/list - show all your subscriptions\n/helpcommands - show list of all commands",
+      "helpcommands": "<b>List of all commands:</b>\n/list - show all your subscriptions\n/helpcommands - show list of all commands\n/settings - show list of all bot settings\n/help - show a reference of using the bot",
       "help": "The help section is under construction"
     },
     "settings": {
@@ -14,15 +14,20 @@
     },
     "subscribe": {
       "wrong_address": "Sorry, the group is not available at the address you specified",
-      "successfully_subscribed": "Successfully subscribed you to ${title}! A number of remaining possible subscriptions: ${remainingSubs}",
+      "successfully_subscribed": "Successfully subscribed you to ${title}! A number of remaining possible subscriptions: ${remainingSubs}.\n\nNow you will receive posts of the group in this bot.",
       "maximum_subscriptions": "You have reached the maximum number of subscriptions. You can unsubscribe from one or several groups to make a new subscription.",
       "group_is_private": "Sorry, this group is private, nothing to show.",
       "already_subscribed": "You're already subscribed to this group."
+    },
+    "subscriptions_list": {
+      "your_subs": "Your subscriptions",
+      "unsubscribe_button": "❌ Unsubscribe"
     }
   },
   "shared": {
     "something_went_wrong": "Sorry, something went wrong, please try again",
-    "wrong_command": "Sorry, the command is not identified"
+    "wrong_command": "Sorry, the command is not identified",
+    "back_button": "◀️ Back"
   },
   "keyboards": {
     "main_keyboard": {

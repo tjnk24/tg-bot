@@ -1,7 +1,7 @@
 import { CustomContextMessage } from 'telegraf';
 import User from '@models/User';
 import logger from './logger';
-import saveToSession from './session';
+import { saveToSession } from './session';
 
 /**
  * Function that updates language for the current user in all known places

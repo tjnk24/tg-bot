@@ -1,7 +1,7 @@
 import { CustomContextMessage, BaseScene } from 'telegraf';
 import logger from '@utils/logger';
-import { deleteFromSession } from '@utils/session';
-import { getSettingsKeyboard, sendMessageToBeDeletedLater } from './helpers';
+import { deleteFromSession, sendMessageToBeDeletedLater } from '@utils/session';
+import { getSettingsKeyboard } from './helpers';
 import {
   languageSettingsAction,
   languageChangeAction,

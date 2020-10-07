@@ -1,7 +1,9 @@
 import { CustomContextMessage } from 'telegraf';
+import { ExtraReplyMessage } from 'telegraf/typings/telegram-types';
+import get from 'lodash.get';
 import logger from './logger';
 
-type SessionDataField = 'settingsScene' | 'language';
+type SessionDataField = 'groups' | 'settingsScene' | 'language';
 
 /**
  * Saving data to the session
@@ -9,7 +11,7 @@ type SessionDataField = 'settingsScene' | 'language';
  * @param field - field to store in
  * @param data - data to store
  */
-const saveToSession = (ctx: CustomContextMessage, field: SessionDataField, data: any) => {
+export const saveToSession = (ctx: CustomContextMessage, field: SessionDataField, data: any) => {
   logger.debug(ctx, 'Saving %s to session', field);
   ctx.session[field] = data;
 };
@@ -24,4 +26,29 @@ export const deleteFromSession = (ctx: CustomContextMessage, field: SessionDataF
   delete ctx.session[field];
 };
 
-export default saveToSession;
+/**
+ * Send message and saving it to the session. Later it can be deleted.
+ * Used to avoid messages duplication
+ * @param ctx - telegram context
+ * @param translationKey - translation key
+ * @param extra - extra for the message, e.g. keyboard
+ */
+export const sendMessageToBeDeletedLater = async (
+  ctx: CustomContextMessage,
+  translationKey: string,
+  extra?: ExtraReplyMessage,
+) => {
+  ctx.webhookReply = false;
+  const message = await ctx.reply(ctx.i18n.t(translationKey), extra);
+  const messagesToDelete = get(ctx.session, 'settingsScene.messagesToDelete', []);
+
+  saveToSession(ctx, 'settingsScene', {
+    messagesToDelete: [
+      ...messagesToDelete,
+      {
+        chatId: message.chat.id,
+        messageId: message.message_id,
+      },
+    ],
+  });
+};

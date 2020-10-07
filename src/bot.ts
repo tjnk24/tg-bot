@@ -13,6 +13,7 @@ import getUserInfo from '@middlewares/user-info';
 import startScene from '@controllers/start';
 import settingsScene from '@controllers/settings';
 import subscribeScene from '@controllers/subscribe';
+import subscribtionsListScene from '@controllers/subscriptions-list';
 import logger from '@utils/logger';
 import startDevMode from '@utils/dev-modes';
 import asyncWrapper from '@utils/error-handler';
@@ -49,6 +50,7 @@ mongoose.connection.on('open', () => {
     startScene,
     settingsScene,
     subscribeScene,
+    subscribtionsListScene,
   ]);
 
   const i18n = new TelegrafI18n({
@@ -81,7 +83,7 @@ mongoose.connection.on('open', () => {
     [match('keyboards.main_keyboard.my_subscriptions'), '/list'],
     asyncWrapper(async (ctx: CustomContextMessage) => {
       await deleteKeyboardMessage(ctx);
-      await ctx.reply(ctx.i18n.t('scenes.main.no_subscriptions'));
+      return ctx.scene.enter('subscriptions-list');
     }),
   );
 
