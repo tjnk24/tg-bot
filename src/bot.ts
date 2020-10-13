@@ -18,6 +18,7 @@ import logger from '@utils/logger';
 import startDevMode from '@utils/dev-modes';
 import asyncWrapper from '@utils/error-handler';
 import deleteKeyboardMessage from '@utils/helpers';
+import watchGroups from '@utils/watch-groups';
 
 require('dotenv').config();
 
@@ -65,6 +66,8 @@ mongoose.connection.on('open', () => {
   bot.use(i18n.middleware());
   bot.use(stage.middleware() as Middleware<TelegrafContext>);
   bot.use(getUserInfo);
+  // @ts-ignore
+  bot.use(watchGroups);
 
   bot.start(asyncWrapper(async (ctx: CustomContextMessage) => {
     await deleteKeyboardMessage(ctx);

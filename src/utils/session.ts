@@ -1,9 +1,17 @@
-import { CustomContextMessage } from 'telegraf';
+import { CustomContextMessage, SessionType } from 'telegraf';
 import { ExtraReplyMessage } from 'telegraf/typings/telegram-types';
 import get from 'lodash.get';
 import logger from './logger';
 
 type SessionDataField = 'groups' | 'settingsScene' | 'language';
+
+const sessionStorage: SessionType = {
+  groups: [],
+  settingsScene: {
+    messagesToDelete: [],
+  },
+  language: 'en' || 'ru',
+};
 
 /**
  * Saving data to the session
@@ -14,7 +22,10 @@ type SessionDataField = 'groups' | 'settingsScene' | 'language';
 export const saveToSession = (ctx: CustomContextMessage, field: SessionDataField, data: any) => {
   logger.debug(ctx, 'Saving %s to session', field);
   ctx.session[field] = data;
+  sessionStorage[field] = data;
 };
+
+export const getFromSession = () => sessionStorage;
 
 /**
  * Removing data from the session
@@ -24,6 +35,7 @@ export const saveToSession = (ctx: CustomContextMessage, field: SessionDataField
 export const deleteFromSession = (ctx: CustomContextMessage, field: SessionDataField) => {
   logger.debug(ctx, 'Saving %s to session', field);
   delete ctx.session[field];
+  delete sessionStorage[field];
 };
 
 /**
