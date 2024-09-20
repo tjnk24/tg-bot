@@ -4,6 +4,7 @@ module.exports = {
     '@typescript-eslint',
     'import',
     'eslint-comments',
+    '@stylistic'
   ],
   env: {
     node: true,
@@ -76,7 +77,7 @@ module.exports = {
     'array-bracket-spacing': ['error', 'never'],
     'space-before-blocks': ['error', 'always'],
     'keyword-spacing': ['error', {before: true, after: true}],
-    semi: ['error', 'always'],
+    '@stylistic/semi': ['error', 'always'],
     'eol-last': ['error', 'always'],
     'no-cond-assign': ['error', 'except-parens'],
     'no-implicit-coercion': 0,
@@ -144,7 +145,7 @@ module.exports = {
             ignoreRestSiblings: true,
         },
     ],
-    '@typescript-eslint/member-delimiter-style': [
+    '@stylistic/member-delimiter-style': [
         'error',
         {
             'multiline': {
