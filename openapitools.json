@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "6.6.0",
+     "generators": {
+        "typescript-fetch-generator": {
+          "inputSpec": "#{cwd}/swagger-spec.yaml",
+          "generatorName": "typescript-fetch",
+          "output": "#{cwd}/apiDocs",
+          "additionalProperties": {
+            "npmName": "nestjs-boilerplate"
+          },
+          "removeOperationIdPrefix": true
+        }
+     }
+  }
+}

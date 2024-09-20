@@ -1,2 +1,7 @@
-# vk-to-tg-bot
-Telegram bot. Work in progress.
+# nestjs-boilerplate
+
+Runs on node 18.13.0
+
+- Typescript
+- ESLint
+- NestJs
